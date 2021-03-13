@@ -8,7 +8,11 @@
           cols="12" sm="6" md="4"
         >
           <v-card>
-            <v-card-title>{{ article.title }}</v-card-title>
+            <v-card-title>
+              <nuxt-link :to="article.slug" class="black--text">
+                {{ article.title }}
+              </nuxt-link>
+            </v-card-title>
             <v-card-text>{{ article.description }}</v-card-text>
           </v-card>
         </v-col>
@@ -33,3 +37,7 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -36,7 +36,7 @@ $ sudo rm -rf /
 
 ### syntax highlight (js)
 
-```js
+```js [sample.js]
 fuction foo() {
     var a = bar();
     const b = 12;
