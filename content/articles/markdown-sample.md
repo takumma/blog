@@ -1,3 +1,10 @@
+---
+title: "マークダウン記法例"
+description: "マークダウンの記法例をまとめています。"
+slug: "markdown-sample"
+tags: ["markdown"]
+---
+
 # markdown-sample
 
 This is markdown sample

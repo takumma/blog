@@ -14,13 +14,11 @@
 import { Context } from "@nuxt/types"
 import { Vue, Component } from "nuxt-property-decorator";
 
-@Component({
+@Component
+export default class ArticlePage extends Vue {
   async asyncData({ $content, params }: Context): Promise<object> {
     const article = await $content('articles', params.slug).fetch();
     return { article };
   }
-})
-export default class ArticlePage extends Vue {
-  
 }
 </script>
