@@ -3,6 +3,8 @@
     <v-col cols="12" sm="8" md="6">
       <article>
         <nuxt-content :document="article"/>
+
+        {{ article }}
       </article>
     </v-col>
   </v-row>
