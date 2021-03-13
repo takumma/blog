@@ -22,28 +22,36 @@ export default class ArticlePage extends Vue {
 }
 </script>
 
-<style>
-.nuxt-content h1 {
-  font-weight: bold;
-  font-size: 2.4rem;
+<style lang="scss">
+.nuxt-content {
+  h1 {
+    font-weight: bold;
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  code {
+    font-weight: bold; /* WiP: need to pick font */
+  }
 }
-.nuxt-content h2 {
-  font-weight: bold;
-  font-size: 2.0rem;
-}
-.nuxt-content h3 {
-  font-weight: bold;
-  font-size: 1.6rem;
-}
-.nuxt-content p {
-  margin-bottom: 20px;
-}
-.nuxt-content code {
-  font-weight: bold; /* WiP: need to pick font */
-}
+
 .nuxt-content-highlight {
   position: relative;
 }
+
 .nuxt-content-highlight .filename {
   position: absolute;
   right: 0;
