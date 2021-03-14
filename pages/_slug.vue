@@ -46,31 +46,44 @@ export default class ArticlePage extends Vue {
 
 h1 {
   font-weight: bold;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 
 .nuxt-content {
+
   h1 {
     font-weight: bold;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+    border-bottom: solid 1.5px;
+    border-bottom-color: #718096;
   }
 
   h2 {
     font-weight: bold;
     font-size: 2.0rem;
+    border-bottom: solid 1.5px;
+    border-bottom-color: #718096;
   }
 
   h3 {
     font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  h4 {
     font-size: 1.6rem;
   }
 
+  h5 {
+    font-size: 1.4rem;
+  }
+
   p {
-    margin-bottom: 20px;
+    font-size: 1.1rem;
   }
 
   code {
-    font-weight: 700; /* WiP: need to pick font */
+    font-weight: 500;
   }
 }
 
