@@ -74,9 +74,9 @@ export default {
   content: {
     markdown: {
       prism: {
-        theme: 'prism-themes/themes/prism-darcula.css'
-      }
-    }
+        theme: 'prism-themes/themes/prism-darcula.css',
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

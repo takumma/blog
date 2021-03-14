@@ -5,7 +5,16 @@
         <h1>{{ article.title }}</h1>
         <nuxt-content :document="article"/>
       </article>
+      {{ article.toc }}
+      {{ navToc(article.toc) }}
     </v-col>
+    <dev v-if="$vuetify.breakpoint.mdAndUp">
+      <v-list>
+        <v-list-item v-for="item in article.toc" :key="item.id">
+          {{ item.text }}
+        </v-list-item>
+      </v-list>
+    </dev>
   </v-row>
 </template>
 
@@ -13,16 +22,33 @@
 import { Context } from "@nuxt/types"
 import { Vue, Component } from "nuxt-property-decorator";
 
+interface Toc {
+  depth: number;
+  id: String;
+  text: String;
+}
+
 @Component
 export default class ArticlePage extends Vue {
+
   async asyncData({ $content, params }: Context): Promise<object> {
     const article = await $content('articles', params.slug).fetch();
     return { article };
+  }
+
+  navToc(toc: Array<Toc>) {
+    return toc.filter(item => item.depth == 1);
   }
 }
 </script>
 
 <style lang="scss">
+
+h1 {
+  font-weight: bold;
+  font-size: 2.4rem;
+}
+
 .nuxt-content {
   h1 {
     font-weight: bold;
@@ -44,7 +70,7 @@ export default class ArticlePage extends Vue {
   }
 
   code {
-    font-weight: bold; /* WiP: need to pick font */
+    font-weight: 700; /* WiP: need to pick font */
   }
 }
 
@@ -62,4 +88,5 @@ export default class ArticlePage extends Vue {
   margin-top: 0.25rem;
   font-size: 0.875rem;
 }
+
 </style>
