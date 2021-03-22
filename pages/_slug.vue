@@ -45,48 +45,75 @@ export default class ArticlePage extends Vue {
 <style lang="scss">
 h1 {
   font-weight: bold;
-  font-size: 2.2rem;
+  font-size: 2.0rem;
 }
 
 .nuxt-content {
 
+  font-size: 1.05rem;
+
   h1 {
-    font-weight: bold;
-    font-size: 2.2rem;
+    font-size: 2.0rem;
     border-bottom: solid 1.5px;
-    border-bottom-color: #718096;
+    border-bottom-color: lightgray;
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   h2 {
-    font-weight: bold;
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     border-bottom: solid 1.5px;
-    border-bottom-color: #718096;
+    border-bottom-color: lightgray;
+    padding-top: 1.0rem;
+    margin-bottom: 1.0rem;
   }
 
   h3 {
-    font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   h4 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   h5 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   p {
-    font-size: 1.1rem;
-  }
-
-  em {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
   }
 
   code {
+    font-size: 0.95rem;
     font-weight: 500;
+  }
+
+  ol {
+    counter-reset: counter-name;
+
+    li {
+      margin: 0; 
+      list-style: none;
+    }
+
+    li:before {
+      counter-increment: counter-name;
+      content: counter(counter-name) ".";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+  }
+
+  hr {
+    border-top: 1.5px solid lightgray;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -99,7 +126,7 @@ h1 {
   right: 0;
   color: #718096;
   font-weight: 300;
-  z-index: 10;
+  z-index: 2;
   margin-right: 0.5rem;
   margin-top: 0.25rem;
   font-size: 0.875rem;

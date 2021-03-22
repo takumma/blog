@@ -5,8 +5,6 @@ slug: "markdown-sample"
 tags: ["markdown"]
 ---
 
-# markdown-sample
-
 This is markdown notation sample.
 
 これはマークダウンのサンプルです。
@@ -15,12 +13,16 @@ This is markdown notation sample.
 これはマークダウンのサンプルです。
 
 # heading 1
+
 ## heading 2
+
 ### hrading 3
+
 #### hrading 4
+
 ##### hrading 5
 
-## list
+# list
 - list1
 - list2
   - list2-1
@@ -28,18 +30,18 @@ This is markdown notation sample.
     - list2-2-1
 - list3
 
-## number list
+# number list
 1. first
 2. second
 
-## code block
-### simple
+# code block
+## simple
 
 ```
 $ sudo rm -rf /
 ```
 
-### syntax highlight (js)
+## syntax highlight (js)
 
 ```js [sample.js]
 fuction foo() {
@@ -49,13 +51,14 @@ fuction foo() {
 }
 ```
 
-### diff
+## diff
 
 ```diff
-+ foo
++ const a = 1
 - bar
 ```
 
+# Text Decoration
 ## inline code
 
 `foo()`
