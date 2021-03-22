@@ -12,17 +12,17 @@ This is markdown notation sample.
 This is markdown notation sample.
 これはマークダウンのサンプルです。
 
-# heading 1
+# 見出し h1
 
-## heading 2
+## 見出し h2
 
-### hrading 3
+### 見出し h3
 
-#### hrading 4
+#### 見出し h4
 
-##### hrading 5
+##### 見出し h5
 
-# list
+# リスト
 - list1
 - list2
   - list2-1
@@ -30,18 +30,18 @@ This is markdown notation sample.
     - list2-2-1
 - list3
 
-# number list
+# 番号付きリスト
 1. first
 2. second
 
-# code block
-## simple
+# コードブロック
+## シンプル
 
 ```
 $ sudo rm -rf /
 ```
 
-## syntax highlight (js)
+## シンタックスハイライト・ファイル名
 
 ```js [sample.js]
 fuction foo() {
@@ -51,23 +51,23 @@ fuction foo() {
 }
 ```
 
-## diff
+## diff 記法
 
 ```diff
 + const a = 1
-- bar
+- var b = 2
 ```
 
-# Text Decoration
-## inline code
+# テキスト装飾
+## インラインコード
 
 `foo()`
 
-## border
+## 水平線
 
 ---
 
-## italic, strong, Strikethrough
+## 斜体・強調・取り消し線
 
 *italicText*
 

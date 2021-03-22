@@ -1,20 +1,11 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+  <v-row justify="center" align="center" class="background">
+    <v-col cols="12" sm="11" md="7">
+      <h1>{{ article.title }}</h1>
       <article>
-        <h1>{{ article.title }}</h1>
         <nuxt-content :document="article"/>
       </article>
-      {{ article.toc }}
-      {{ navToc(article.toc) }}
     </v-col>
-    <dev v-if="$vuetify.breakpoint.mdAndUp">
-      <v-list>
-        <v-list-item v-for="item in article.toc" :key="item.id">
-          {{ item.text }}
-        </v-list-item>
-      </v-list>
-    </dev>
   </v-row>
 </template>
 
@@ -30,22 +21,48 @@ interface Toc {
 
 @Component
 export default class ArticlePage extends Vue {
-
   async asyncData({ $content, params }: Context): Promise<object> {
     const article = await $content('articles', params.slug).fetch();
     return { article };
-  }
-
-  navToc(toc: Array<Toc>) {
-    return toc.filter(item => item.depth == 1);
   }
 }
 </script>
 
 <style lang="scss">
+
+:root {
+  --font-size-h1: 1.6rem;
+  --font-size-h2: 1.6rem;
+  --font-size-h3: 1.4rem;
+  --font-size-h4: 1.2rem;
+}
+
+@media screen and (min-width:768px) {
+  :root {
+  --font-size-h1: 1.8rem;
+  --font-size-h2: 1.55rem;
+  --font-size-h3: 1.4rem;
+  --font-size-h4: 1.25rem;
+  --font-size-h5: 1.1rem;
+  }
+}
+
+.background {
+  background-color: darkseagreen;
+}
+
+.container {
+  padding: 0px;
+}
+
+article {
+  background-color: white;
+  padding: 2.0rem;
+}
+
 h1 {
   font-weight: bold;
-  font-size: 2.0rem;
+  font-size: var(--font-size-h1);
 }
 
 .nuxt-content {
@@ -53,7 +70,7 @@ h1 {
   font-size: 1.05rem;
 
   h1 {
-    font-size: 2.0rem;
+    font-size: var(--font-size-h1);
     border-bottom: solid 1.5px;
     border-bottom-color: lightgray;
     padding-top: 1.5rem;
@@ -61,7 +78,7 @@ h1 {
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: var(--font-size-h2);
     border-bottom: solid 1.5px;
     border-bottom-color: lightgray;
     padding-top: 1.0rem;
@@ -69,19 +86,19 @@ h1 {
   }
 
   h3 {
-    font-size: 1.6rem;
+    font-size: var(--font-size-h3);
     padding-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
 
   h4 {
-    font-size: 1.4rem;
+    font-size: var(--font-size-h4);
     padding-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
 
   h5 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-h5);
   }
 
   p {
@@ -124,12 +141,12 @@ h1 {
 .nuxt-content-highlight .filename {
   position: absolute;
   right: 0;
-  color: #718096;
+  color: darkgray;
   font-weight: 300;
   z-index: 2;
   margin-right: 0.5rem;
   margin-top: 0.25rem;
-  font-size: 0.875rem;
+  font-size: 1.0rem;
 }
 
 </style>
