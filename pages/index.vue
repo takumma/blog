@@ -5,16 +5,9 @@
         <v-col
           v-for="article in articles"
           :key="article.slug"
-          cols="12" sm="6" md="4"
+          cols="12"
         >
-          <v-card>
-            <v-card-title>
-              <nuxt-link :to="article.slug" class="black--text">
-                {{ article.title }}
-              </nuxt-link>
-            </v-card-title>
-            <v-card-text>{{ article.description }}</v-card-text>
-          </v-card>
+        <article-card :article="article"></article-card>
         </v-col>
       </v-row>
       {{ articles }}
@@ -25,10 +18,16 @@
 <script lang="ts">
 import { Context } from "@nuxt/types"
 import { Vue, Component } from "nuxt-property-decorator";
+import ArticleCard from "@/components/ArticleCard.vue";
+import { IContentDocument } from "@nuxt/content/types/content";
 
-@Component
+@Component({
+  components: {
+    ArticleCard,
+  }
+})
 export default class IndexPage extends Vue {
-  async asyncData({ $content }: Context): Promise<object> {
+  async asyncData({ $content }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
     const articles = await $content('articles')
       .only(['title', 'description', 'slug', 'tags'])
       .sortBy('createdAt', 'asc')

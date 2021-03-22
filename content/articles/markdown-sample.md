@@ -7,7 +7,12 @@ tags: ["markdown"]
 
 # markdown-sample
 
-This is markdown sample
+This is markdown notation sample.
+
+これはマークダウンのサンプルです。
+
+This is markdown notation sample.
+これはマークダウンのサンプルです。
 
 # heading 1
 ## heading 2

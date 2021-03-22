@@ -43,7 +43,6 @@ export default class ArticlePage extends Vue {
 </script>
 
 <style lang="scss">
-
 h1 {
   font-weight: bold;
   font-size: 2.2rem;
@@ -79,6 +78,10 @@ h1 {
   }
 
   p {
+    font-size: 1.1rem;
+  }
+
+  em {
     font-size: 1.1rem;
   }
 
