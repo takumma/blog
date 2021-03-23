@@ -1,6 +1,11 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app>
+    <v-app-bar
+      fixed
+      app
+      hide-on-scroll
+    >
+      <v-toolbar-title>takumma's blog</v-toolbar-title>
       <v-spacer />
       <v-btn icon>
         <v-icon>mdi-menu</v-icon>

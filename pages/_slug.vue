@@ -1,8 +1,10 @@
 <template>
   <v-row justify="center" align="center" class="background">
-    <v-col cols="12" sm="11" md="7">
-      <h1>{{ article.title }}</h1>
+    <v-col cols="12" sm="10" md="9" class="col-center">
       <article>
+        <h1>{{ article.title }}</h1>
+        <div v-for="tag in article.tags" :key="tag">{{ tag }}</div>
+        <div> {{ formatedDate(article.createdAt) }}</div>
         <nuxt-content :document="article"/>
       </article>
     </v-col>
@@ -12,18 +14,17 @@
 <script lang="ts">
 import { Context } from "@nuxt/types"
 import { Vue, Component } from "nuxt-property-decorator";
-
-interface Toc {
-  depth: number;
-  id: String;
-  text: String;
-}
+import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
 
 @Component
 export default class ArticlePage extends Vue {
-  async asyncData({ $content, params }: Context): Promise<object> {
+  async asyncData({ $content, params }: Context): Promise<{ article: IContentDocument | IContentDocument[] } > {
     const article = await $content('articles', params.slug).fetch();
     return { article };
+  }
+
+  formatedDate(date: string) {
+    if(date) return date.slice(0, 10); // .replaceAll('-', '/')
   }
 }
 </script>
@@ -31,19 +32,22 @@ export default class ArticlePage extends Vue {
 <style lang="scss">
 
 :root {
+  --font-size-title: 1.7rem;
   --font-size-h1: 1.6rem;
-  --font-size-h2: 1.6rem;
-  --font-size-h3: 1.4rem;
-  --font-size-h4: 1.2rem;
+  --font-size-h2: 1.4rem;
+  --font-size-h3: 1.2rem;
+  --font-size-h4: 1.15rem;
+  --font-size-h5: 1.05rem;
 }
 
 @media screen and (min-width:768px) {
   :root {
-  --font-size-h1: 1.8rem;
-  --font-size-h2: 1.55rem;
-  --font-size-h3: 1.4rem;
-  --font-size-h4: 1.25rem;
-  --font-size-h5: 1.1rem;
+    --font-size-title: 2.0rem;
+    --font-size-h1: 1.8rem;
+    --font-size-h2: 1.55rem;
+    --font-size-h3: 1.4rem;
+    --font-size-h4: 1.25rem;
+    --font-size-h5: 1.1rem;
   }
 }
 
@@ -52,17 +56,24 @@ export default class ArticlePage extends Vue {
 }
 
 .container {
-  padding: 0px;
+  all: unset;
+}
+
+.title-wrapper {
+  margin: auto;
+  max-width: 900px;
 }
 
 article {
   background-color: white;
   padding: 2.0rem;
+  max-width: 900px;
+  margin: auto;
 }
 
 h1 {
   font-weight: bold;
-  font-size: var(--font-size-h1);
+  font-size: var(--font-size-title);
 }
 
 .nuxt-content {
