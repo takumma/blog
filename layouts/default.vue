@@ -47,6 +47,8 @@ header {
 .toolbar-title {
   color: #263238;
   text-decoration: none;
+  font-weight: bold;
+  font-family: Menlo,Consolas, "Courier New", monospace;
 }
 
 .v-main {

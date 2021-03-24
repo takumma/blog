@@ -24,7 +24,7 @@ export default class ArticlePage extends Vue {
   }
 
   formatedDate(date: string) {
-    if(date) return date.slice(0, 10); // .replaceAll('-', '/')
+    if(date) return date.slice(0, 10).replace(/-/g, '/');
   }
 }
 </script>

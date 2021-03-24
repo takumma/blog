@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center" class="background">
     <v-col
-      cols="12" xs="11" sm="8" md="7" lg="6"
+      cols="11" sm="10" md="8" lg="7"
       v-for="article in articles"
       :key="article.slug"
     >
@@ -24,7 +24,7 @@ import { IContentDocument } from "@nuxt/content/types/content";
 export default class IndexPage extends Vue {
   async asyncData({ $content }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
     const articles = await $content('articles')
-      .only(['title', 'description', 'slug', 'tags'])
+      .only(['title', 'slug', 'tags', 'createdAt'])
       .sortBy('createdAt', 'asc')
       .fetch();
     return { articles };
@@ -35,13 +35,10 @@ export default class IndexPage extends Vue {
 <style scoped>
 .background {
   width: 100%;
+  overflow: hidden;
 }
 
 main {
   margin-top: 0px;
-}
-
-.col-center {
-  padding: 0px;
 }
 </style>
