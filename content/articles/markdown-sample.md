@@ -1,8 +1,8 @@
 ---
-title: "マークダウン記法例"
-description: "マークダウンの記法例をまとめています。"
+title: "マークダウンサンプル"
+description: "このブログのマークダウンのサンプルをまとめています。"
 slug: "markdown-sample"
-tags: ["markdown"]
+tags: ["md"]
 ---
 
 This is markdown notation sample.
@@ -45,9 +45,9 @@ $ sudo rm -rf /
 
 ```js [sample.js]
 fuction foo() {
-    var a = bar();
-    const b = 12;
-    return a + b;
+  var a = bar();
+  const b = 12;
+  return a + b;
 }
 ```
 

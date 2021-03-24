@@ -1,16 +1,11 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-row>
-        <v-col
-          v-for="article in articles"
-          :key="article.slug"
-          cols="12"
-        >
-        <article-card :article="article"></article-card>
-        </v-col>
-      </v-row>
-      {{ articles }}
+  <v-row justify="center" align="center" class="background">
+    <v-col
+      cols="12" xs="11" sm="8" md="7" lg="6"
+      v-for="article in articles"
+      :key="article.slug"
+    >
+      <article-card :article="article"></article-card>
     </v-col>
   </v-row>
 </template>
@@ -38,5 +33,15 @@ export default class IndexPage extends Vue {
 </script>
 
 <style scoped>
+.background {
+  width: 100%;
+}
 
+main {
+  margin-top: 0px;
+}
+
+.col-center {
+  padding: 0px;
+}
 </style>

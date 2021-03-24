@@ -38,6 +38,7 @@ export default class ArticlePage extends Vue {
   --font-size-h3: 1.2rem;
   --font-size-h4: 1.15rem;
   --font-size-h5: 1.05rem;
+  --article-padding: 1.0rem;
 }
 
 @media screen and (min-width:768px) {
@@ -48,15 +49,29 @@ export default class ArticlePage extends Vue {
     --font-size-h3: 1.4rem;
     --font-size-h4: 1.25rem;
     --font-size-h5: 1.1rem;
+    --article-padding: 2.0rem;
   }
 }
 
+main {
+  margin-top: 0px;
+}
+
+.col-center {
+  padding: 0px;
+}
+
 .background {
-  background-color: darkseagreen;
+  background-color: #263238;
+  width: 100%;
 }
 
 .container {
   all: unset;
+}
+
+.row {
+  margin: 0;
 }
 
 .title-wrapper {
@@ -66,7 +81,7 @@ export default class ArticlePage extends Vue {
 
 article {
   background-color: white;
-  padding: 2.0rem;
+  padding: var(--article-padding);
   max-width: 900px;
   margin: auto;
 }
@@ -83,7 +98,7 @@ h1 {
   h1 {
     font-size: var(--font-size-h1);
     border-bottom: solid 1.5px;
-    border-bottom-color: lightgray;
+    border-bottom-color: #C3CEE3;
     padding-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -91,7 +106,7 @@ h1 {
   h2 {
     font-size: var(--font-size-h2);
     border-bottom: solid 1.5px;
-    border-bottom-color: lightgray;
+    border-bottom-color: #C3CEE3;
     padding-top: 1.0rem;
     margin-bottom: 1.0rem;
   }
@@ -119,6 +134,7 @@ h1 {
   code {
     font-size: 0.95rem;
     font-weight: 500;
+    font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   }
 
   ol {
@@ -139,7 +155,7 @@ h1 {
   }
 
   hr {
-    border-top: 1.5px solid lightgray;
+    border-top: 1.5px solid #C3CEE3;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }

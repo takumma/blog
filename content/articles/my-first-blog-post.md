@@ -1,10 +1,8 @@
 ---
-title: "My First Blog Post"
-description: "最初の投稿です。"
+title: "個人ブログ開設しました"
+description: "最初の投稿"
 slug: "my-first-blog-post"
 tags: ["poem"]
 ---
 
-# My First Blog Post
-
-Hi there! I'm takumma.
+takumma と申します。

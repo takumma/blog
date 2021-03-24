@@ -4,8 +4,14 @@
       fixed
       app
       hide-on-scroll
+      color="white"
+      class="toolbar"
     >
-      <v-toolbar-title>takumma's blog</v-toolbar-title>
+      <v-toolbar-title>
+        <nuxt-link to="/" class="toolbar-title">
+          takumma's blog
+        </nuxt-link>
+      </v-toolbar-title>
       <v-spacer />
       <v-btn icon>
         <v-icon>mdi-menu</v-icon>
@@ -27,3 +33,23 @@ export default class IndexPage extends Vue {
 
 }
 </script>
+
+<style scoped>
+.v-toolbar__content {
+  padding: 0;
+}
+
+header {
+  color: #263238;
+  width: 100%;
+}
+
+.toolbar-title {
+  color: #263238;
+  text-decoration: none;
+}
+
+.v-main {
+  background-color: #263238;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
-  <v-card>
+  <v-card class="article-card">
     <v-card-title>
-      <nuxt-link :to="article.slug" class="black--text">
+      <nuxt-link :to="article.slug" class="title">
         {{ article.title }}
       </nuxt-link>
     </v-card-title>
@@ -21,5 +21,8 @@ export default class ArticleCard extends Vue {
 </script>
 
 <style>
-
+.v-application a {
+  color: #263238;
+  text-decoration: none;
+}
 </style>
