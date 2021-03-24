@@ -2,9 +2,20 @@
   <v-row justify="center" align="center" class="background">
     <v-col cols="12" sm="10" md="9" class="col-center">
       <article>
-        <h1>{{ article.title }}</h1>
-        <div v-for="tag in article.tags" :key="tag">{{ tag }}</div>
-        <div> {{ formatedDate(article.createdAt) }}</div>
+        <div class="py-3">
+          {{ formatedDate(article.createdAt) }}
+          <h1>{{ article.title }}</h1>
+        </div>
+        <v-row class="pb-3">
+          <v-col
+            v-for="tag in article.tags"
+            :key="tag"
+            class="py-1 px-1"
+          >
+            <tag-tip :tag="tag"></tag-tip>
+          </v-col>
+        </v-row>
+        <div> </div>
         <nuxt-content :document="article"/>
       </article>
     </v-col>
@@ -15,8 +26,13 @@
 import { Context } from "@nuxt/types"
 import { Vue, Component } from "nuxt-property-decorator";
 import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
+import TagTip from '@/components/TagTip.vue'
 
-@Component
+@Component({
+  components: {
+    TagTip,
+  }
+})
 export default class ArticlePage extends Vue {
   async asyncData({ $content, params }: Context): Promise<{ article: IContentDocument | IContentDocument[] } > {
     const article = await $content('articles', params.slug).fetch();

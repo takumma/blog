@@ -2,7 +2,7 @@
 title: "マークダウンサンプル"
 description: "このブログのマークダウンのサンプルをまとめています。"
 slug: "markdown-sample"
-tags: ["md"]
+tags: ["markdown"]
 ---
 
 This is markdown notation sample.

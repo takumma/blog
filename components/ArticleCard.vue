@@ -1,5 +1,5 @@
 <template>
-  <v-card class="article-card">
+  <v-card class="article-card" rounded="lg">
     <v-card-text class="pb-0">
       {{ formatedDate(article.createdAt) }}
     </v-card-text>
