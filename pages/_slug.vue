@@ -15,7 +15,6 @@
             <tag-tip :tag="tag"></tag-tip>
           </v-col>
         </v-row>
-        <div> </div>
         <nuxt-content :document="article"/>
       </article>
     </v-col>

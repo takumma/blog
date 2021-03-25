@@ -16,7 +16,7 @@ export default {
       { hid: 'og:url', property: 'og:url', content: 'https://blog.takumma.net' },
       { hid: 'og:title', property: 'og:title', content: "takumma's blog" },
       { hid: 'og:description', property: 'og:description', content: "takumma's blog site" },
-      { hid: 'og:image', property: 'og:image', content: 'https://res.cloudinary.com/dykntmxnh/image/upload/v1616648526/default-ogp_cunef8.png' },
+      { hid: 'og:image', property: 'og:image', content: 'https://res.cloudinary.com/dykntmxnh/image/upload/v1616648526/default_ogp_cunef8.png' },
       { hid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
