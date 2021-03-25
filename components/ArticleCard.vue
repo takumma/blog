@@ -4,7 +4,7 @@
       {{ formatedDate(article.createdAt) }}
     </v-card-text>
     <v-card-title class="py-0">
-      <nuxt-link :to="article.slug" class="title">
+      <nuxt-link :to="article.slug" class="article-title">
         {{ article.title }}
       </nuxt-link>
     </v-card-title>
@@ -42,11 +42,11 @@ export default class ArticleCard extends Vue {
 
 <style>
 .v-application a {
-  color: #263238;
   text-decoration: none;
 }
 
-.v-application .title {
+.v-application .article-title {
   font-weight: 700;
+  color: #263238;
 }
 </style>
