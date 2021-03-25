@@ -37,8 +37,4 @@ export default class IndexPage extends Vue {
   width: 100%;
   overflow: hidden;
 }
-
-main {
-  margin-top: 0px;
-}
 </style>

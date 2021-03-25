@@ -26,9 +26,16 @@ const TagTip = () => import('@/components/TagTip.vue')
 
 export default {
 
-  async asyncData({ $content, params }) {
-    const article = await $content('articles', params.slug).fetch();
-    return { article: article };
+  async asyncData({ $content, params, error }) {
+    try {
+      const article = await $content('articles', params.slug).fetch()
+      return { article: article };
+    } catch {
+      error({
+        statusCode: 404,
+        message: 'Page Not Found'
+      });
+    }
   },
 
   head() {
@@ -79,9 +86,6 @@ export default {
   }
 }
 
-main {
-  margin-top: 0px;
-}
 
 .col-center {
   padding: 0px;

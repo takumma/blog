@@ -1,12 +1,40 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
+    <v-app-bar
+      fixed
+      app
+      hide-on-scroll
+      color="white"
+      class="toolbar"
+    >
+      <v-toolbar-title>
+        <nuxt-link to="/" class="toolbar-title">
+          takumma's blog
+        </nuxt-link>
+      </v-toolbar-title>
+      <v-spacer />
+    </v-app-bar>
+    <v-main>
+      <v-container  justify="center" align="center" class="container">
+        <div>
+          <div v-if="error.statusCode === 404" >
+            <p class="error-code">{{ error.statusCode }}</p>
+            <p class="error-message">{{ error.message }}</p>
+          </div>
+          <div v-else>
+            <p class="error-message">An error occurred</p>
+          </div>
+          <v-btn
+            outlined
+            color="white"
+            to="/"
+            nuxt
+          >
+            home
+          </v-btn>
+        </div>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
@@ -36,7 +64,29 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 20px;
+
+header {
+  color: #263238;
+  width: 100%;
+}
+
+.toolbar-title {
+  color: #263238;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Menlo,Consolas, "Courier New", monospace;
+}
+
+.v-main {
+  background-color: #263238;
+}
+
+.container {
+  text-align: center;
+  color: #fff;
+}
+
+.error-code {
+  font-size: 4rem;
 }
 </style>
