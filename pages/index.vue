@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Context } from "@nuxt/types"
 import { Vue, Component } from "nuxt-property-decorator";
-import ArticleCard from "@/components/ArticleCard.vue";
+const ArticleCard = () => import("@/components/ArticleCard.vue");
 import { IContentDocument } from "@nuxt/content/types/content";
 
 @Component({

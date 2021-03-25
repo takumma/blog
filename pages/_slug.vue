@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import TagTip from '@/components/TagTip.vue'
+const TagTip = () => import('@/components/TagTip.vue')
 
 export default {
 

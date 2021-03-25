@@ -23,7 +23,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "nuxt-property-decorator";
 import { IContentDocument } from "@nuxt/content/types/content";
-import TagTip from './TagTip.vue';
+const TagTip = () => import('@/components/TagTip.vue')
 
 @Component({
   components: {
