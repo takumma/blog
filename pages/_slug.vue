@@ -22,25 +22,36 @@
   </v-row>
 </template>
 
-<script lang="ts">
-import { Context } from "@nuxt/types"
-import { Vue, Component } from "nuxt-property-decorator";
-import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
+<script>
 import TagTip from '@/components/TagTip.vue'
 
-@Component({
+export default {
+
+  async asyncData({ $content, params }) {
+    const article = await $content('articles', params.slug).fetch();
+    return { article: article };
+  },
+
+  head() {
+    return {
+      title: this.article.title,
+      meta: [
+        { hid: 'og:url', property: 'og:url', content: 'https://blog.takumma.net' + this.$route.path },
+        { hid: 'og:title', property: 'og:title', content: this.article.title },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:image', property: 'og:image', content: `https://res.cloudinary.com/dykntmxnh/image/upload/l_text:Sawarabi%20Gothic_100:${ this.article.title },co_rgb:000,w_1500,c_fit/v1616594506/blog_ogp.png` },
+      ]
+    }
+  },
+
   components: {
     TagTip,
-  }
-})
-export default class ArticlePage extends Vue {
-  async asyncData({ $content, params }: Context): Promise<{ article: IContentDocument | IContentDocument[] } > {
-    const article = await $content('articles', params.slug).fetch();
-    return { article };
-  }
+  },
 
-  formatedDate(date: string) {
-    if(date) return date.slice(0, 10).replace(/-/g, '/');
+  methods: {
+    formatedDate(date) {
+      if(date) return date.slice(0, 10).replace(/-/g, '/');
+    }
   }
 }
 </script>
