@@ -1,6 +1,5 @@
 ---
 title: "マークダウンサンプル"
-description: "このブログのマークダウンのサンプルをまとめています。"
 slug: "markdown-sample"
 tags: ["markdown"]
 ---

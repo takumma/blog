@@ -17,7 +17,11 @@ export default {
       { hid: 'og:image', property: 'og:image', content: 'https://res.cloudinary.com/dykntmxnh/image/upload/v1616648526/default_ogp_cunef8.png' },
       { hid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { hid: 'shortcut-icon', rel: 'shortcut-icon', href: '/favicon.ico'},
+      { hid: 'apple-touch-icon', rel: 'apple-touch-icon', href: '/favicon.ico'}
+    ],
   },
 
   publicRuntimeConfig: {
