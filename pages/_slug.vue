@@ -6,15 +6,14 @@
           {{ formatedDate(article.createdAt) }}
           <h1>{{ article.title }}</h1>
         </div>
-        <v-row class="pb-3">
-          <v-col
+        <div class="pb-3">
+          <tag-tip
             v-for="tag in article.tags"
             :key="tag"
-            class="py-1 px-1"
-          >
-            <tag-tip :tag="tag"></tag-tip>
-          </v-col>
-        </v-row>
+            class="my-1 mr-2"
+            :tag="tag"
+          ></tag-tip>
+        </div>
         <nuxt-content :document="article"/>
       </article>
     </v-col>
