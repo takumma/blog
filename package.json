@@ -21,6 +21,7 @@
     "prism-themes": "^1.5.0"
   },
   "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@nuxt/types": "^2.14.12",
     "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
@@ -33,8 +34,13 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.5.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.1.1",
+    "textlint": "^11.9.0",
+    "textlint-rule-preset-ja-spacing": "^2.0.2",
+    "textlint-rule-preset-ja-technical-writing": "^4.0.1"
   }
 }

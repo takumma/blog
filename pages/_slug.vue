@@ -6,15 +6,14 @@
           {{ formatedDate(article.createdAt) }}
           <h1>{{ article.title }}</h1>
         </div>
-        <v-row class="pb-3">
-          <v-col
+        <div class="pb-3">
+          <tag-tip
             v-for="tag in article.tags"
             :key="tag"
-            class="py-1 px-1"
-          >
-            <tag-tip :tag="tag"></tag-tip>
-          </v-col>
-        </v-row>
+            class="my-1 mr-2"
+            :tag="tag"
+          ></tag-tip>
+        </div>
         <nuxt-content :document="article"/>
       </article>
     </v-col>
@@ -23,6 +22,7 @@
 
 <script>
 const TagTip = () => import('@/components/TagTip.vue')
+const ImageLoader = () => import('~/components/ImageLoader.vue')
 
 export default {
 
@@ -52,6 +52,7 @@ export default {
 
   components: {
     TagTip,
+    ImageLoader,
   },
 
   methods: {
@@ -188,6 +189,11 @@ h1 {
     border-top: 1.5px solid #C3CEE3;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+
+  img {
+    margin-top: 1.0rem;
+    margin-bottom: 1.5rem;
   }
 }
 

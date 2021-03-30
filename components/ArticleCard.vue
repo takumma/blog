@@ -8,15 +8,14 @@
         {{ article.title }}
       </nuxt-link>
     </v-card-title>
-    <v-row class="px-3 pb-3">
-      <v-col
+    <div class="px-3 pb-3">
+      <tag-tip
         v-for="tag in article.tags"
         :key="tag"
-        class="py-1 px-1"
-      >
-        <tag-tip :tag="tag"></tag-tip>
-      </v-col>
-    </v-row>
+        class="my-1 mr-2"
+        :tag="tag"
+      ></tag-tip>
+    </div>
   </v-card>
 </template>
 
