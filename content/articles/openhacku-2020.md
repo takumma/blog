@@ -23,7 +23,13 @@ tags: ["poem", "hackathon"]
 
 **Liverary** という子供の語彙の増加を可視化するアプリを作りました。
 
+<image-loader file="liverary.png" alt="liverary"></image-loader>
+
 デバイス（HackU ではラズパイ）のマイクから子供の音声を取得して文字起こしをしサーバーへ送信。サーバーで形態素解析にかけて語彙を抽出し、DB に保存。クライアントで収集した語彙を朝顔の葉に載せてみることができるアプリです。
+
+技術構成は以下のようになっています。
+
+<image-loader file="liverary-tech.png" alt="liverary tech"></image-loader>
 
 # 僕が担当したところ
 
@@ -37,9 +43,11 @@ tags: ["poem", "hackathon"]
 
 今回は、始まってすぐは Opstions API で書いてたんですが、折角なので途中で全て Composition API に書き直しました。個人的には Composition API はかなりきれいに記述できるなと感じました。ちゃんと分類しないと computed と普通のメゾッドが混ざって崩壊するものの、そこをしっかりとすれば書きやすくていいなと感じました。this がコードから消えるのもめっちゃいい。Typescript との相性も Vuex4 なども含めてかなり良くなった気がします。
 
+Composition API 触ってから、property-decorator とかを使うのに凄く違和感を感じるようになってしまいました。もう虜になってますね...。このブログは今 property-decorator で書いているんですが、今後改修しそうなら Composition API への移行も検討しようと思います。
+
 ### 認証周り
 
-認証には jwt トークンを使用しました。firebase はサーバーレスで使ったことしかなかったのでここら辺の実装は初めてで楽しかったです。もっと勉強したい。
+認証には jwt トークンを使用しました。firebase はサーバーレスで使ったことしかなかったのでここら辺の実装は初めてで楽しかったです。フロントエンド周りのセキュリティに最近興味があるのでもっと勉強したい。
 
 # 振り返り
 

@@ -22,6 +22,7 @@
 
 <script>
 const TagTip = () => import('@/components/TagTip.vue')
+const ImageLoader = () => import('~/components/ImageLoader.vue')
 
 export default {
 
@@ -51,6 +52,7 @@ export default {
 
   components: {
     TagTip,
+    ImageLoader,
   },
 
   methods: {
@@ -187,6 +189,11 @@ h1 {
     border-top: 1.5px solid #C3CEE3;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+
+  img {
+    margin-top: 1.0rem;
+    margin-bottom: 1.5rem;
   }
 }
 
