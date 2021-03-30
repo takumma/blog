@@ -10,10 +10,7 @@
         "allowFullWidthExclamation": true,
         "allowFullWidthQuestion": true,
       },
-      "no-doubled-joshi": {
-         "strict": false,
-         "allow": ["か"],
-      }
+      "no-doubled-joshi": false
     },
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {
@@ -28,6 +25,7 @@
     "ja-technical-writing/ja-no-mixed-period": {
       "allowPeriodMarks": [":", "、"],
     },
-    "ja-technical-writing/sentence-length": false
+    "ja-technical-writing/sentence-length": false,
+    "ja-technical-writing/ja-no-weak-phrase": false
   }
 }
