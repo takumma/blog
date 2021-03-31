@@ -15,6 +15,25 @@
           ></tag-tip>
         </div>
         <nuxt-content :document="article"/>
+        <div class="share py-3">
+          share to ...
+          <v-btn
+            icon
+            large
+            class="pa-1"
+            @click="shareTwitter()"
+          >
+            <v-icon>mdi-twitter</v-icon>
+          </v-btn>
+          <v-btn
+            icon
+            large
+            class="pa-1"
+            @click="shareFaceBook()"
+          >
+            <v-icon>mdi-facebook</v-icon>
+          </v-btn>
+        </div>
       </article>
     </v-col>
   </v-row>
@@ -42,7 +61,7 @@ export default {
     return {
       title: this.article.title,
       meta: [
-        { hid: 'og:url', property: 'og:url', content: 'https://blog.takumma.net' + this.$route.path },
+        { hid: 'og:url', property: 'og:url', content: `https://blog.takumma.net${this.$route.path}` },
         { hid: 'og:title', property: 'og:title', content: this.article.title },
         { hid: 'og:type', property: 'og:type', content: 'article' },
         { hid: 'og:image', property: 'og:image', content: `https://res.cloudinary.com/dykntmxnh/image/upload/l_text:Sawarabi%20Gothic_100:${ this.article.title },co_rgb:000,w_1500,c_fit/v1616594506/blog_ogp.png` },
@@ -58,6 +77,16 @@ export default {
   methods: {
     formatedDate(date) {
       if(date) return date.slice(0, 10).replace(/-/g, '/');
+    },
+
+    shareTwitter() {
+      const url = `https://twitter.com/intent/tweet?url=https://blog.takumma.net${this.$route.path}&text=${this.article.title}`
+      window.open(url, '_blank')
+    },
+
+    shareFaceBook() {
+      const url = `https://www.facebook.com/share.php?u=https://blog.takumma.net${this.$route.path}`
+      window.open(url, '_blank')
     }
   }
 }
@@ -120,6 +149,10 @@ article {
 h1 {
   font-weight: bold;
   font-size: var(--font-size-title);
+}
+
+.share {
+  text-align: right;
 }
 
 .nuxt-content {
