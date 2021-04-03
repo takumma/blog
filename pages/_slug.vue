@@ -165,6 +165,10 @@ h1 {
     border-bottom-color: #C3CEE3;
     padding-top: 1.5rem;
     margin-bottom: 1.5rem;
+
+    code {
+      font-size: var(--font-size-h1);
+    }
   }
 
   h2 {
@@ -173,22 +177,38 @@ h1 {
     border-bottom-color: #C3CEE3;
     padding-top: 1.0rem;
     margin-bottom: 1.0rem;
+
+    code {
+      font-size: var(--font-size-h2);
+    }
   }
 
   h3 {
     font-size: var(--font-size-h3);
     padding-top: 0.5rem;
     margin-bottom: 0.5rem;
+
+    code {
+      font-size: var(--font-size-h3);
+    }
   }
 
   h4 {
     font-size: var(--font-size-h4);
     padding-top: 0.5rem;
     margin-bottom: 0.5rem;
+
+    code {
+      font-size: var(--font-size-h4);
+    }
   }
 
   h5 {
     font-size: var(--font-size-h5);
+
+    code {
+      font-size: var(--font-size-h5);
+    }
   }
 
   p {
@@ -196,7 +216,7 @@ h1 {
   }
 
   code {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   }
