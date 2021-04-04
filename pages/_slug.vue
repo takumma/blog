@@ -248,6 +248,12 @@ h1 {
     margin-top: 1.0rem;
     margin-bottom: 1.5rem;
   }
+
+  blockquote {
+    color: #777;
+    padding-left: 1rem;
+    border-left: solid 3px #777;
+  }
 }
 
 .nuxt-content-highlight {

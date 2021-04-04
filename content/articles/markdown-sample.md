@@ -1,5 +1,5 @@
 ---
-title: "マークダウンサンプル"
+title: "Markdownサンプル"
 slug: "markdown-sample"
 tags: ["markdown"]
 ---
