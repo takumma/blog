@@ -25,7 +25,7 @@ export default class IndexPage extends Vue {
   async asyncData({ $content }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
     const articles = await $content('articles')
       .only(['title', 'slug', 'tags', 'date'])
-      .sortBy('createdAt', 'desc')
+      .sortBy('date', 'desc')
       .fetch();
     return { articles };
   }
