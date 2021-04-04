@@ -2,6 +2,7 @@
 title: "Flutterの入門本を執筆してハンズオンセミナーを開催した話"
 slug: "flutter-beginners-hands-on"
 tags: ["poem", "flutter"]
+date: "2021/04/04"
 ---
 
 Zenn というサービスで Flutter をハンズオン形式で学べる入門書を執筆しました。

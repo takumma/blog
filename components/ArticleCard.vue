@@ -1,7 +1,7 @@
 <template>
   <v-card class="article-card" rounded="lg">
     <v-card-text class="pb-0">
-      {{ formatedDate(article.createdAt) }}
+      {{ article.date }}
     </v-card-text>
     <v-card-title class="py-0">
       <nuxt-link :to="article.slug" class="article-title">
@@ -32,10 +32,6 @@ const TagTip = () => import('@/components/TagTip.vue')
 export default class ArticleCard extends Vue {
   @Prop({ required: true })
   article: IContentDocument | undefined;
-
-  formatedDate(date: string) {
-    if(date) return date.slice(0, 10).replace(/-/g, '/');
-  }
 }
 </script>
 

@@ -24,7 +24,7 @@ import { IContentDocument } from "@nuxt/content/types/content";
 export default class IndexPage extends Vue {
   async asyncData({ $content }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
     const articles = await $content('articles')
-      .only(['title', 'slug', 'tags', 'createdAt'])
+      .only(['title', 'slug', 'tags', 'date'])
       .sortBy('createdAt', 'desc')
       .fetch();
     return { articles };

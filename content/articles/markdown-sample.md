@@ -2,6 +2,7 @@
 title: "Markdownサンプル"
 slug: "markdown-sample"
 tags: ["markdown"]
+date: "2021/03/12"
 ---
 
 This is markdown notation sample.

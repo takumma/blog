@@ -2,6 +2,7 @@
 title: "個人ブログ開設しました"
 slug: "my-first-blog-post"
 tags: ["poem"]
+date: "2021/03/13"
 ---
 
 takumma です。

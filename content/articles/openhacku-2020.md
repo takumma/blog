@@ -2,6 +2,7 @@
 title: "HackU2020参加記"
 slug: "openhacku-2020"
 tags: ["poem", "hackathon"]
+date: "2021/03/28"
 ---
 
 2021 年春に開催された OPEN HACK U 2020 (vol.5)に参加したので、参加記を書きます。

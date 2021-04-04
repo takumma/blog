@@ -3,7 +3,7 @@
     <v-col cols="12" sm="10" md="9" class="col-center">
       <article>
         <div class="py-3">
-          {{ formatedDate(article.createdAt) }}
+          {{ article.date }}
           <h1>{{ article.title }}</h1>
         </div>
         <div class="pb-3">
@@ -75,10 +75,6 @@ export default {
   },
 
   methods: {
-    formatedDate(date) {
-      if(date) return date.slice(0, 10).replace(/-/g, '/');
-    },
-
     shareTwitter() {
       const url = `https://twitter.com/intent/tweet?url=https://blog.takumma.net${this.$route.path}&text=${this.article.title}`
       window.open(url, '_blank')

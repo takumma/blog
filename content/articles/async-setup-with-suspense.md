@@ -2,6 +2,7 @@
 title: "Suspenseを使ってasync setup()ができるようにする"
 slug: "async-setup-with-suspense"
 tags: ["vue"]
+date: "2021/04/03"
 ---
 
 Composition API では、Options API の created(と beforeCreated) は setup() 内に記述します。その関係で、非同期関数を setup()内に記述したいときがあります。
