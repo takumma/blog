@@ -9,10 +9,10 @@ export const create = async (feed, args) => {
     link: `${hostname}/feed.${ext}`
   }
   const { $content } = require('@nuxt/content')
-  articles = await $content('articles').fetch();
+  articles = await $content('articles', { text: true }).fetch();
 
   articles.forEach(article => {
-    console.log('article: ' + article.title)
+    console.log(article)
     const url = `${hostname}/${article.slug}`;
     feed.addItem({
       title: article.title,
@@ -21,11 +21,9 @@ export const create = async (feed, args) => {
       tags: article.tags,
       createdAt: article.date,
       description: `This is personal feed of ${article.title}`,
-      content: article.toc
+      content: article.text
     });
   })
-
-  console.log(feed)
 
   return feed;
 }
