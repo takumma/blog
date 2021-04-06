@@ -12,7 +12,6 @@ export const create = async (feed, args) => {
   articles = await $content('articles', { text: true }).fetch();
 
   articles.forEach(article => {
-    console.log(article)
     const url = `${hostname}/${article.slug}`;
     feed.addItem({
       title: article.title,
@@ -21,7 +20,7 @@ export const create = async (feed, args) => {
       tags: article.tags,
       createdAt: article.date,
       description: `This is personal feed of ${article.title}`,
-      content: article.text
+      content: article.text.slice(0, 200) + "..."
     });
   })
 
