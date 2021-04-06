@@ -1,3 +1,5 @@
+import { create } from './modules/feed';
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'universal',
@@ -55,6 +57,17 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxt/content',
+    '@nuxtjs/feed'
+  ],
+
+  feed: [
+    {
+      path: '/feed.xml',
+      create,
+      cacheTime: 1000 * 60 * 15,
+      type: 'rss2',
+      data: [ 'articles', 'xml' ]
+    },
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -63,7 +76,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      lang: 'ja',
     },
   },
 

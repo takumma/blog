@@ -13,6 +13,20 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
+      <v-tooltip bottom color="#263238">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="#263238"
+          v-bind="attrs"
+          v-on="on"
+          icon
+          href="/feed.xml"
+        >
+          <v-icon>mdi-rss</v-icon>
+        </v-btn>
+      </template>
+      <span>RSS</span>
+    </v-tooltip>
     </v-app-bar>
     <v-main>
       <v-container>
