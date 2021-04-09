@@ -42,6 +42,7 @@
 <script>
 const TagTip = () => import('@/components/TagTip.vue')
 const ImageLoader = () => import('~/components/ImageLoader.vue')
+const TweetCard = () => import('~/components/TweetCard.vue')
 
 export default {
 
@@ -72,6 +73,7 @@ export default {
   components: {
     TagTip,
     ImageLoader,
+    TweetCard,
   },
 
   methods: {

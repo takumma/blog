@@ -148,9 +148,19 @@ fuction foo() {
 
 # 埋め込みリンク
 
+<tag-tip tag="tag"></tag-tip>
+
 ## Youtube
 ```
-<youtube video-id="4AoFA19gbLo" />
+<youtube video-id="4AoFA19gbLo"></youtube>
 ```
 
-<youtube video-id="4AoFA19gbLo" />
+<youtube video-id="4AoFA19gbLo"></youtube>
+
+
+## Twitter
+
+```
+<tweet-card id="1380504732876173319"></tweet-card>
+```
+<tweet-card id="1380504732876173319"></tweet-card>
