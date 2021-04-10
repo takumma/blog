@@ -164,3 +164,11 @@ fuction foo() {
 ```
 
 <tweet-card id="1360343880760131584"></tweet-card>
+
+
+## Others
+
+```
+<embed-link src="https://blog.takumma.net/"></embed-link>
+```
+<embed-link src="https://blog.takumma.net/"></embed-link>

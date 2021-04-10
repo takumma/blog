@@ -1,14 +1,18 @@
 <template>
-  <youtube :video-id="id" class="youtube"></youtube>
+  <div class="embed-link">
+    {{ src }}
+  </div>
 </template>
 
 <script lang="ts">
+import { Context } from "@nuxt/types";
 import { Vue, Component, Prop } from "nuxt-property-decorator";
 
 @Component
-export default class TweetCard extends Vue {
+export default class EmbedLink extends Vue {
   @Prop({ type: String, required: true })
-  id!: string;
+  src!: string;
+
 }
 </script>
 

@@ -44,6 +44,7 @@ const TagTip = () => import('@/components/TagTip.vue')
 const ImageLoader = () => import('~/components/ImageLoader.vue')
 const TweetCard = () => import('~/components/TweetCard.vue')
 const YoutubeCard = () => import('~/components/YoutubeCard.vue')
+const EmbedLink = () => import('~/components/EmbedLink.vue')
 
 export default {
 
@@ -75,6 +76,8 @@ export default {
     TagTip,
     ImageLoader,
     TweetCard,
+    YoutubeCard,
+    EmbedLink
   },
 
   methods: {
