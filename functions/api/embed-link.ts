@@ -5,13 +5,13 @@ interface EmbedLinkResponse {
   body: string,
 }
 
-exports.handler = (
+exports.handler = async (
   event: APIGatewayEvent,
   context: Context,
   callback: Callback,
 ) => {
   const params = event.queryStringParameters
-  const ogps = fetch(params?.url!)
+  const ogps = await fetch(params?.url!)
     .then(resp => resp.text())
     .then(text => {
       const el = new DOMParser().parseFromString(text, "text/html")
