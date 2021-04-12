@@ -10,14 +10,22 @@ exports.handler = (
   context: Context,
   callback: Callback,
 ) => {
-  console.log("test")
   const params = event.queryStringParameters
+  const ogps = fetch(params?.url!)
+    .then(resp => resp.text())
+    .then(text => {
+      const el = new DOMParser().parseFromString(text, "text/html")
+      const headEls = (el.head.children)
+      return Array.from(headEls).map(value => {
+        const prop = value.getAttribute('property')
+        if(!prop) return;
+        return { prop: prop.replace("og:",""),content: value.getAttribute("content")}
+      })
+    })
   const resp: EmbedLinkResponse = {
     statusCode: 200,
     body: JSON.stringify({
-      msg: `EmbedTest`,
-      requestId: context.awsRequestId || 'dummy',
-      params
+      ...ogps
     })
   }
 

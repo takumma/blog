@@ -59,7 +59,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxt/content',
-    '@nuxtjs/feed'
+    '@nuxtjs/feed',
+    '@nuxtjs/proxy'
   ],
 
   feed: [
@@ -72,8 +73,16 @@ export default {
     },
   ],
 
+  proxy: {
+    '/.netlify/functions': {
+      target: 'http://localhost:9000'
+    }
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: '/'
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
