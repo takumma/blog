@@ -1,10 +1,8 @@
-import fetch from "node-fetch";
 import { Context, Callback, APIGatewayEvent } from 'aws-lambda'
+import { JSDOM } from 'jsdom'
+import axios from "axios";
+import fetch from 'node-fetch';
 
-interface EmbedLinkResponse {
-  statusCode: number,
-  body: string,
-}
 
 exports.handler = async (
   event: APIGatewayEvent,
@@ -12,23 +10,37 @@ exports.handler = async (
   callback: Callback,
 ) => {
   const params = event.queryStringParameters
-  const ogps = await fetch(params?.url!)
-    .then(resp => resp.text())
-    .then(text => {
-      const el = new DOMParser().parseFromString(text, "text/html")
-      const headEls = (el.head.children)
-      return Array.from(headEls).map(value => {
-        const prop = value.getAttribute('property')
-        if(!prop) return;
-        return { prop: prop.replace("og:",""),content: value.getAttribute("content")}
-      })
+  const url = params?.url;
+  if(!url) return;
+  const response = await fetch(url, { headers: { 'User-Agent': 'bot' }})
+    .then(async(resp) => {
+      const html = await resp.text()
+      const dom = new JSDOM(html)
+      // const meta = new JSDOM(a).window.document.head.querySelectorAll("meta");
+      // const meta = dom.window.document.head.querySelectorAll("meta");
+      // const ogp = extractOGP([...meta]);
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          ...params,
+          html
+        })
+      }
     })
-  const resp: EmbedLinkResponse = {
-    statusCode: 200,
-    body: JSON.stringify({
-      ...ogps
-    })
-  }
+    .catch(err => console.log(err));
+  callback(undefined, response)
+}
 
-  callback(undefined, resp)
+const extractOGP = ( metaElements: HTMLMetaElement[] ): object => {
+  const ogp = metaElements
+    .filter((element: HTMLMetaElement) => element.hasAttribute('property'))
+    .reduce((previous: any, current: HTMLMetaElement) => {
+      const property = current.getAttribute("property")?.trim()
+      if (!property) return
+      const content = current.getAttribute("content")
+      previous[property] = content
+      return previous
+    })
+ 
+  return ogp
 }

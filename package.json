@@ -17,13 +17,19 @@
     "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/pwa": "^3.3.5",
+    "axios": "^0.21.1",
+    "bufferutil": "^4.0.3",
+    "canvas": "^2.7.0",
     "core-js": "^3.8.3",
+    "jsdom": "^16.5.3",
     "node-fetch": "^2.6.1",
     "nuxt": "^2.14.12",
     "nuxt-property-decorator": "^2.9.1",
     "prism-themes": "^1.5.0",
+    "utf-8-validate": "^5.0.4",
     "vue-tweet-embed": "^2.4.0",
-    "vue-youtube": "^1.4.0"
+    "vue-youtube": "^1.4.0",
+    "ws": "^7.4.4"
   },
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.4.0",
@@ -36,6 +42,7 @@
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/vuetify": "^1.11.3",
     "@types/aws-lambda": "^8.10.75",
+    "@types/jsdom": "^16.2.10",
     "@types/node-fetch": "^2.5.10",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.18.0",
