@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import { Context, Callback, APIGatewayEvent } from 'aws-lambda'
 
 interface EmbedLinkResponse {
