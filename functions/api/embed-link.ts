@@ -2,7 +2,19 @@ import { Context, Callback, APIGatewayEvent } from 'aws-lambda'
 import { JSDOM } from 'jsdom'
 import axios from "axios";
 import fetch from 'node-fetch';
+import * as chardet from 'chardet';
+import * as iconv from 'iconv-lite';
 
+axios.create({
+  responseType: 'arraybuffer',
+  transformResponse: data => {
+    const encoding = chardet.detect(data);
+    if (!encoding) {
+      throw new Error('chardet failed to detect encoding');
+    }
+    return iconv.decode(data, encoding);
+  }
+})
 
 exports.handler = async (
   event: APIGatewayEvent,
@@ -12,9 +24,9 @@ exports.handler = async (
   const params = event.queryStringParameters
   const url = params?.url;
   if(!url) return;
-  const response = await fetch(url, { headers: { 'User-Agent': 'bot' }})
-    .then(async(resp) => {
-      const html = await resp.text()
+  const response = await axios.get(url, {headers: { 'User-Agent': 'bot' }})
+    .then((resp) => {
+      const html = resp.data
       const dom = new JSDOM(html)
       // const meta = new JSDOM(a).window.document.head.querySelectorAll("meta");
       // const meta = dom.window.document.head.querySelectorAll("meta");
@@ -23,7 +35,7 @@ exports.handler = async (
         statusCode: 200,
         body: JSON.stringify({
           ...params,
-          html
+          ...dom
         })
       }
     })
