@@ -1,20 +1,4 @@
 import { Context, Callback, APIGatewayEvent } from 'aws-lambda'
-import { JSDOM } from 'jsdom'
-import axios from "axios";
-import fetch from 'node-fetch';
-import * as chardet from 'chardet';
-import * as iconv from 'iconv-lite';
-
-axios.create({
-  responseType: 'arraybuffer',
-  transformResponse: data => {
-    const encoding = chardet.detect(data);
-    if (!encoding) {
-      throw new Error('chardet failed to detect encoding');
-    }
-    return iconv.decode(data, encoding);
-  }
-})
 
 exports.handler = async (
   event: APIGatewayEvent,
@@ -23,36 +7,42 @@ exports.handler = async (
 ) => {
   const params = event.queryStringParameters
   const url = params?.url;
-  if(!url) return;
-  const response = await axios.get(url, {headers: { 'User-Agent': 'bot' }})
-    .then((resp) => {
-      const html = resp.data
-      const dom = new JSDOM(html)
-      // const meta = new JSDOM(a).window.document.head.querySelectorAll("meta");
-      // const meta = dom.window.document.head.querySelectorAll("meta");
-      // const ogp = extractOGP([...meta]);
+  if(!url){
+    callback("400", {});
+    return
+  }
+  const parser = require("ogp-parser")
+  const response = await parser(url, { skipOembed: true })
+    .then((data: any) => {
+      const siteName = data.ogp["og:site_name"] || [""]
+      const title = data.title
+      const description = data.seo.description || data.ogp["oG:description"] || [""]
+      const image = data.ogp["og:image"] || [""]
+      const twitterCard = data.seo["twitter:card"] || data.ogp["twitter:card"] || [""]
       return {
         statusCode: 200,
+        "headers": { "Content-Type": "application/json; charset=utf-8"},
         body: JSON.stringify({
-          ...params,
-          ...dom
+          url: url,
+          siteName: siteName[0],
+          title: title,
+          description: description[0],
+          image: image[0],
+          twitterCard: twitterCard[0],
         })
       }
-    })
-    .catch(err => console.log(err));
-  callback(undefined, response)
+  })
+  callback(null, response)
 }
 
-const extractOGP = ( metaElements: HTMLMetaElement[] ): object => {
-  const ogp = metaElements
-    .filter((element: HTMLMetaElement) => element.hasAttribute('property'))
-    .reduce((previous: any, current: HTMLMetaElement) => {
-      const property = current.getAttribute("property")?.trim()
-      if (!property) return
-      const content = current.getAttribute("content")
-      previous[property] = content
-      return previous
-    })
- 
-  return ogp
-}
+// const encoding = require('encoding-japanese');
+// const ogp = Object.fromEntries(
+//   Object.entries(data.ogp)
+//     .map(([key, val]: [string, any]) => [
+//       key,
+//       encoding.convert(val[0], {
+//         to: 'UTF8',
+//         from: encoding.detect( data.title)
+//       })
+//     ])
+// )
