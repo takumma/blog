@@ -34,15 +34,3 @@ exports.handler = async (
   })
   callback(null, response)
 }
-
-// const encoding = require('encoding-japanese');
-// const ogp = Object.fromEntries(
-//   Object.entries(data.ogp)
-//     .map(([key, val]: [string, any]) => [
-//       key,
-//       encoding.convert(val[0], {
-//         to: 'UTF8',
-//         from: encoding.detect( data.title)
-//       })
-//     ])
-// )
