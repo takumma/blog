@@ -42,6 +42,9 @@
 <script>
 const TagTip = () => import('@/components/TagTip.vue')
 const ImageLoader = () => import('~/components/ImageLoader.vue')
+const TweetCard = () => import('~/components/TweetCard.vue')
+const YoutubeCard = () => import('~/components/YoutubeCard.vue')
+const EmbedLink = () => import('~/components/EmbedLink.vue')
 
 export default {
 
@@ -72,6 +75,9 @@ export default {
   components: {
     TagTip,
     ImageLoader,
+    TweetCard,
+    YoutubeCard,
+    EmbedLink
   },
 
   methods: {
@@ -248,7 +254,7 @@ h1 {
   blockquote {
     color: #777;
     padding-left: 1rem;
-    border-left: solid 3px #777;
+    border-left: solid 5px #C3CEE3;
   }
 }
 

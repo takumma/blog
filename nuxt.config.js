@@ -2,7 +2,7 @@ import { create } from './modules/feed';
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'universal',
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -36,7 +36,9 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~/plugins/vue-youtube'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -57,7 +59,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxt/content',
-    '@nuxtjs/feed'
+    '@nuxtjs/feed',
+    '@nuxtjs/proxy'
   ],
 
   feed: [
@@ -70,8 +73,16 @@ export default {
     },
   ],
 
+  proxy: {
+    '/.netlify/functions': {
+      target: 'http://localhost:9000'
+    }
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: '/'
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

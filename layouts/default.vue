@@ -72,7 +72,7 @@ export default class IndexPage extends Vue {
 }
 
 header {
-  color: #263238;
+  color: #263238 !important;
   width: 100%;
 }
 
@@ -95,7 +95,7 @@ header {
   }
 
   .links a {
-    color: white;
+    color: white !important;
   }
 }
 </style>
