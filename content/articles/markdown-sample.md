@@ -171,4 +171,5 @@ fuction foo() {
 ```
 <embed-link src="https://blog.takumma.net/"></embed-link>
 ```
+
 <embed-link src="https://blog.takumma.net/"></embed-link>
