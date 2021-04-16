@@ -218,9 +218,9 @@ h1 {
   }
 
   code {
-    font-size: 0.9rem;
-    font-weight: 500;
-    font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace !important;
   }
 
   ol {
