@@ -1,5 +1,5 @@
 <template>
-  <v-card class="embed-link" outlined rounded="lg">
+  <v-card class="embed-link" outlined rounded="lg" :href="src">
     <div class="link">
       <h1 class="title">{{ data.title }}</h1>
       <div class="others">
