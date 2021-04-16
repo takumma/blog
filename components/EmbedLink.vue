@@ -53,7 +53,7 @@ export default class EmbedLink extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 .v-card {
   display: flex;
 }
