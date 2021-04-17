@@ -42,10 +42,9 @@ export default class EmbedLink extends Vue {
   async mounted() {
     try {
       const resp = await this.$axios.$get(`.netlify/functions/embed-link?url=${this.src}`)
-      console.log(resp)
       this.data = resp
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -59,14 +58,18 @@ export default class EmbedLink extends Vue {
 }
 
 .embed-link {
-  display: flex;
-  overflow: hidden;
   margin: 2rem 0px;
+  height: 120px;
+  overflow: hidden;
 }
 
 .link {
   flex: 1;
   padding: 0.8rem 1.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
 }
 
 .title {

@@ -23,9 +23,10 @@
       }
     },
     "ja-technical-writing/ja-no-mixed-period": {
-      "allowPeriodMarks": [":", "、"],
+      "allowPeriodMarks": [":", "、", "."],
     },
     "ja-technical-writing/sentence-length": false,
-    "ja-technical-writing/ja-no-weak-phrase": false
+    "ja-technical-writing/ja-no-weak-phrase": false,
+    "ja-technical-writing/no-hankaku-kana": false
   }
 }
