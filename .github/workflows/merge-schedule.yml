@@ -1,0 +1,24 @@
+name: Merge Schedule
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+  schedule:
+    - cron: 0 3,9 * * *
+
+
+# In your pull requests,
+# add a line to the end of the pull request description
+# look looking like "/schedule 2020-11-21T20:00"
+
+jobs:
+  merge_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gr2m/merge-schedule-action@v1
+        with:
+          time_zone: "Asia/Tokyo"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
