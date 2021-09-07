@@ -165,7 +165,7 @@ h1 {
     font-size: var(--font-size-h1);
     border-bottom: solid 1.5px;
     border-bottom-color: #C3CEE3;
-    padding-top: 1.5rem;
+    padding-top: 2.0rem;
     margin-bottom: 1.5rem;
 
     code {
@@ -177,7 +177,7 @@ h1 {
     font-size: var(--font-size-h2);
     border-bottom: solid 1.5px;
     border-bottom-color: #C3CEE3;
-    padding-top: 1.0rem;
+    padding-top: 1.5rem;
     margin-bottom: 1.0rem;
 
     code {
@@ -187,7 +187,7 @@ h1 {
 
   h3 {
     font-size: var(--font-size-h3);
-    padding-top: 0.5rem;
+    padding-top: 1.0rem;
     margin-bottom: 0.5rem;
 
     code {
@@ -221,6 +221,7 @@ h1 {
     font-size: 0.9rem !important;
     font-weight: 500 !important;
     font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace !important;
+    margin-bottom: 0.5rem;
   }
 
   ol {
@@ -260,6 +261,7 @@ h1 {
 
 .nuxt-content-highlight {
   position: relative;
+  margin-bottom: 1.0rem;
 }
 
 .nuxt-content-highlight .filename {
