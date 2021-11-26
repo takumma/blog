@@ -1,11 +1,9 @@
 ---
 title: "[Flutter] GoogleMapで複数の Widget をマーカーとして表示する"
 slug: "flutter-google-map-widget-marker"
-tags: ["tech", "flutter"]
+tags: ["tech", "flutter", "google-map"]
 date: "2021/10/21"
 ---
-
-takumma です。
 
 # はじめに - Introduction
 
@@ -24,7 +22,7 @@ Tools • Dart 2.14.0
 
 https://pub.dev/packages/google_maps_flutter
 
-実装したときに使った Version は、`^2.0.6` でした。（マイナーバージョンの違いならあんまり関係ないとは思います。多分）
+実装したときに使った Version は、`^2.0.6` でした。
 
 # 全体感の説明
 
@@ -90,23 +88,133 @@ Widget build(BuildContext context) {
   );
 }
 
-
+void func() {
+  // これでウィジェットを取得できる。
+  RenderRepaintBoundary boundary = iconKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+}
 ```
 
-
-
+## 全体感まとめ
 ですので実装の流れとしては、
 
-1. Widget を画面外に描画
-2. 描画している Widget を画像に変換
-3. 変換した画像を、BitmapDescriptor に変換
-4. 変換したものを Marker のプロパティに指定して、 GoogleMap 上にマーカーを表示。
+1. 画像にしたいコンポーネント(Widget)を作成
+2. Widget を画面外に描画
+3. 描画している Widget を画像に変換
+4. 変換した画像を、BitmapDescriptor に変換
+5. 変換したものを Marker のプロパティに指定して、 GoogleMap 上にマーカーを表示。
 
 という感じになります。
 
 # 実装
 
 では、実装していきましょう。
+
+## 1. 画像にしたいコンポーネントを作成
+まず、画像にしたいコンポーネントを作成します。
+
+```dart
+class CustomMarker extends StatelessWidget {
+  const CustomMarker(required this.number, {Key? key}) : super(key: key);
+
+  final int number;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 72.0,
+      width: 72.0, 
+      child: Stack(
+        children: [
+          Image.asset(
+            'assets/marker_icon.png',
+            fit: BoxFit.fill,
+          ),
+          Align(
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              child: Text(
+                number.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+ちなみに、今回の記事ではこういう感じのマーカーを表示させます。
+
+<image-loader file="flutter-google-map-widget-marker/marker.png" alt="sample-marker" width="50"></image-loader>
+
+## 2. Widget を画面外に描画
+次は、作成したコンポーネントを、GoogleMap を表示しているページの画面外に描画します。
+
+```dart
+class MapPageState extends State<MapPage> {
+  const MapPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Transform.translate(
+            offset: const Offset(-400, 0), // 画面外に描画
+            child: ListView.builder(
+              itemCount: 4,
+              itemBuilder: (_, index) {
+                final subEpisode = model.subEpisodeList[index];
+                return SubEpisodeMarker(index + 1),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    ),
+  }
+}
+```
+
+## 3. 描画している Widget を画像に変換
+
+
+## 4. 変換した画像を、BitmapDescriptor に変換
+
+
+## 5. 変換したものを Marker のプロパティに指定して、 GoogleMap 上にマーカーを表示。
+
+
+
+# 番外編：マーカーを変更したことによって位置がずれたのを直す
+
+設定する Widget や画像によっては、マーカーの指す位置がずれてしまう場合があります。
+そのような場合は、`anchor`を設定すれば大丈夫です。
+
+```dart
+GoogleMap(
+  mapType: MapType.normal,
+  initialCameraPosition: _kGooglePlex,
+  onMapCreated: (GoogleMapController controller) {
+    _controller.complete(controller);
+  },
+  markers: [
+    Marker(
+      markerId: MarkerId('marker-1'),
+      position: LatLng(/*略*/),
+      icon: _customMarker,
+      anchor: const Offset(0.18, 0.72), // ここで調節
+    ),
+  ].toSet(),
+),
+```
 
 # 参考
 
