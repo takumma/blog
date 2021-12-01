@@ -9,6 +9,10 @@ date: "2021/10/21"
 
 Flutter で GoogleMap 上に Widget を表示する実装をしたときに、日本語でちゃんと書いてある記事が見当たらなかったのでまとめます。
 
+サンプルコードはこちら。
+
+https://github.com/takumma/flutter_google_map_custom_marker_sample
+
 #### バージョン情報など
 ```
 $ flutter --version
@@ -169,11 +173,7 @@ class MapPageState extends State<MapPage> {
             offset: const Offset(-400, 0), // 画面外に描画
             child: ListView.builder(
               itemCount: 4,
-              itemBuilder: (_, index) {
-                final subEpisode = model.subEpisodeList[index];
-                return SubEpisodeMarker(index + 1),
-                );
-              },
+              itemBuilder: (_, index) => CustomMarker(index + 1),
             ),
           ),
         ],
@@ -184,19 +184,146 @@ class MapPageState extends State<MapPage> {
 ```
 
 ## 3. 描画している Widget を画像に変換
+次に、描画している Widget を画像に変換する処理を記述していきます。
 
+### `MarkerData` クラスの作成
+まず、マーカーの表示に必要なデータをまとめたクラス `MarkerData` を作っておきます。
+
+```dart
+class MarkerData {
+  MarkerData({required this.latLng});
+
+  final LatLng latLng;
+  final GlobalKey iconKey = GlobalKey();
+  BitmapDescriptor? iconBitmap;
+}
+```
+
+画像の変換に必要な GlobalKey・BitmapDescriptor とマーカーの位置情報を保持しています。
+
+### `_markerData` の作成
+`MarkerData` クラスを作成したら、マーカーの表示をするために `_markerData` を作成しておきます。
+
+```dart
+final List<MarkerData> _markerData =
+      List.generate(4, (index) => MarkerData(latLng: LatLng(0, 5.0 * index)));
+```
+
+### RepaintBoundary で描画している Widget を Wrap
+次に、描画している Widget を参照できるように Widget を Wrap し、GlobalKey から参照できるように key に `_markerData[index].iconKey` を指定します。
+
+```diff
+  body: Stack(
+    children: <Widget>[
+      Transform.translate(
+        offset: const Offset(-400, 0), // 画面外に描画
+-       child: ListView.builder(
+-         itemCount: 4,
+-         itemBuilder: (_, index) => CustomMarker(index + 1),
+-     ),
++       child: ListView.builder(
++         itemCount: _markerData.length,
++         itemBuilder: (_, index) => RepaintBoundary(
++           key: _markerData[index].iconKey,
++           child: CustomMarker(index + 1),
++         ),
++       ),
+      ),
+      // ...
+    ],
+),
+```
+
+### Widget -> 画像に変換する処理を実装
+`iconKey` から Widget を取得できるようになったので、ここから画像に変換する処理を実装していきます。Widget がレンダリングされたあとに処理をしたいので、`Future.delayed()`を行っています。
+
+```dart
+Future<Uint8List> _capturePng(GlobalKey iconKey) async {
+    if (iconKey.currentContext == null) {
+      await Future.delayed(const Duration(milliseconds: 20));
+      return _capturePng(iconKey);
+    }
+
+    RenderRepaintBoundary boundary =
+        iconKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    if (boundary.debugNeedsPaint) {
+      await Future.delayed(const Duration(milliseconds: 20));
+      return _capturePng(iconKey);
+    }
+
+    ui.Image image = await boundary.toImage(pixelRatio: 2.5);
+    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    var pngBytes = byteData!.buffer.asUint8List();
+    return pngBytes;
+  }
+```
 
 ## 4. 変換した画像を、BitmapDescriptor に変換
+
+次に、変換した画像を BitmapDescriptor に変換する処理を書いていきます。
+
+```dart
+void _getMarkerBitmaps() async {
+  Future<void> _getMarkerBitmap(int index) async {
+    final Uint8List imageData = await _capturePng(_markerData[index].iconKey);
+    setState(() {
+      _markerData[index].iconBitmap = BitmapDescriptor.fromBytes(imageData);
+    });
+  }
+
+  final List<Future<void>> futures = [];
+  for (int i = 0; i < 4; i++) {
+    futures.add(_getMarkerBitmap(i));
+  }
+
+  await Future.wait(futures);
+}
+```
+
+`_getMarkerBitmap` が画像 → BitmapDescriptor の変換をする処理で、 `_getMarkerBitmaps` では各マーカーの変換処理を行っています。
+
+`_getMarkerBitmaps` は、build が完了した後に呼び出したいので、build 関数内で以下のように呼び出します。
+
+```dart
+@override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _getMarkerBitmaps());
+
+    return Scaffold(
+      // ...
+    ),
+```
 
 
 ## 5. 変換したものを Marker のプロパティに指定して、 GoogleMap 上にマーカーを表示。
 
+最後に、変換した BitmapDescriptor を Marker の icon プロパティに指定して、GoogleMap 上のマーカーを変更します。BitmapDescriptor の取得処理（`_getMarkerBitmaps`）が完了するまでの措置として、`?? BitmapDescriptor.defaultMarker` を付けています。
+
+```dart
+GoogleMap(
+  initialCameraPosition: const CameraPosition(
+    target: LatLng(0, 0),
+  ),
+  markers: _markerData
+      .map((markerData) => Marker(
+            markerId: MarkerId(markerData.iconKey.toString()),
+            icon: markerData.iconBitmap ??
+                BitmapDescriptor.defaultMarker,
+            position: markerData.latLng,
+          ))
+      .toSet(),
+),
+```
+
+これで、GoogleMap 上に、Widget を使ったマーカーを表示できました。
+
+<image-loader file="flutter-google-map-widget-marker/widget-custom-markers.png" alt="sample-marker" width="50"></image-loader>
 
 
 # 番外編：マーカーを変更したことによって位置がずれたのを直す
 
 設定する Widget や画像によっては、マーカーの指す位置がずれてしまう場合があります。
-そのような場合は、`anchor`を設定すれば大丈夫です。
+そのような場合は、`anchor` を設定して位置を調節すれば大丈夫です。
 
 ```dart
 GoogleMap(
