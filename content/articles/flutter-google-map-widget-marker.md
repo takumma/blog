@@ -2,7 +2,7 @@
 title: "[Flutter] GoogleMapで複数の Widget をマーカーとして表示する"
 slug: "flutter-google-map-widget-marker"
 tags: ["tech", "flutter", "google-map"]
-date: "2021/10/21"
+date: "2021/12/15"
 ---
 
 # はじめに - Introduction
