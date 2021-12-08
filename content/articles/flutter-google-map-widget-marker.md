@@ -7,7 +7,12 @@ date: "2021/12/15"
 
 # はじめに - Introduction
 
-Flutter で GoogleMap 上に Widget を表示する実装をしたときに、日本語でちゃんと書いてある記事が見当たらなかったのでまとめます。
+鈴鹿高専 Advent Calendar 2021 15 日目の記事です。
+
+https://qiita.com/advent-calendar/2021/snct
+
+
+Flutter で GoogleMap 上に Widget（カスタムマーカー）を表示する実装をしたときに、日本語でちゃんと書いてある記事が見当たらなくて苦戦したので、まとめておきます。
 
 サンプルコードはこちら。
 
