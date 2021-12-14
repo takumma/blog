@@ -9,8 +9,7 @@ date: "2021/12/15"
 
 鈴鹿高専 Advent Calendar 2021 15 日目の記事です。
 
-https://qiita.com/advent-calendar/2021/snct
-
+<embed-link src="https://qiita.com/advent-calendar/2021/snct"></embed-link>
 
 Flutter で GoogleMap 上に Widget（カスタムマーカー）を表示する実装をしたときに、日本語でちゃんと書いてある記事が見当たらなくて苦戦したので、まとめておきます。
 
@@ -29,7 +28,8 @@ Tools • Dart 2.14.0
 
 使うパッケージはこれです。
 
-https://pub.dev/packages/google_maps_flutter
+<embed-link src="https://pub.dev/packages/google_maps_flutter"></embed-link>
+
 
 実装したときに使った Version は、`^2.0.6` でした。
 
@@ -63,7 +63,7 @@ GoogleMap(
 ),
 ```
 
-で、そのマーカーをデフォルトのものから変更したい場合は、Marker に Icon プロパティを指定します。
+そして、そのマーカーをデフォルトのものから変更したい場合は、Marker に Icon プロパティを指定します。
 
 ```dart
 Marker(
@@ -73,7 +73,7 @@ Marker(
 ),
 ```
 
-で、このアイコンに指定するのは、![BitmapDescriptor](https://pub.dev/documentation/google_maps_flutter_platform_interface/latest/google_maps_flutter_platform_interface/BitmapDescriptor-class.html) です。
+このアイコンに指定するのは、[BitmapDescriptor](https://pub.dev/documentation/google_maps_flutter_platform_interface/latest/google_maps_flutter_platform_interface/BitmapDescriptor-class.html) です。
 なので、Widget をアイコンとして表示させたい場合はうまいこと Widget からこの BitmapDescriptor に変換したものを上げる必要があります。
 
 そして BitmapDescriptor は画像(正確には byte データ)から変換できます。なので、
@@ -191,7 +191,7 @@ class MapPageState extends State<MapPage> {
 ## 3. 描画している Widget を画像に変換
 次に、描画している Widget を画像に変換する処理を記述していきます。
 
-### `MarkerData` クラスの作成
+### MarkerData クラスの作成
 まず、マーカーの表示に必要なデータをまとめたクラス `MarkerData` を作っておきます。
 
 ```dart
@@ -206,7 +206,7 @@ class MarkerData {
 
 画像の変換に必要な GlobalKey・BitmapDescriptor とマーカーの位置情報を保持しています。
 
-### `_markerData` の作成
+### _markerData の作成
 `MarkerData` クラスを作成したら、マーカーの表示をするために `_markerData` を作成しておきます。
 
 ```dart
