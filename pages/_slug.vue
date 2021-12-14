@@ -14,23 +14,13 @@
             :tag="tag"
           ></tag-tip>
         </div>
-        <nuxt-content :document="article"/>
+        <nuxt-content :document="article" />
         <div class="share py-3">
           share to ...
-          <v-btn
-            icon
-            large
-            class="pa-1"
-            @click="shareTwitter()"
-          >
+          <v-btn icon large class="pa-1" @click="shareTwitter()">
             <v-icon>mdi-twitter</v-icon>
           </v-btn>
-          <v-btn
-            icon
-            large
-            class="pa-1"
-            @click="shareFaceBook()"
-          >
+          <v-btn icon large class="pa-1" @click="shareFaceBook()">
             <v-icon>mdi-facebook</v-icon>
           </v-btn>
         </div>
@@ -47,16 +37,15 @@ const YoutubeCard = () => import('~/components/YoutubeCard.vue')
 const EmbedLink = () => import('~/components/EmbedLink.vue')
 
 export default {
-
   async asyncData({ $content, params, error }) {
     try {
       const article = await $content('articles', params.slug).fetch()
-      return { article: article };
+      return { article: article }
     } catch {
       error({
         statusCode: 404,
-        message: 'Page Not Found'
-      });
+        message: 'Page Not Found',
+      })
     }
   },
 
@@ -64,11 +53,19 @@ export default {
     return {
       title: this.article.title,
       meta: [
-        { hid: 'og:url', property: 'og:url', content: `https://blog.takumma.net${this.$route.path}` },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://blog.takumma.net${this.$route.path}`,
+        },
         { hid: 'og:title', property: 'og:title', content: this.article.title },
         { hid: 'og:type', property: 'og:type', content: 'article' },
-        { hid: 'og:image', property: 'og:image', content: `https://res.cloudinary.com/dykntmxnh/image/upload/l_text:Sawarabi%20Gothic_100:${ this.article.title },co_rgb:000,w_1500,c_fit/v1616594506/blog_ogp.png` },
-      ]
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `https://res.cloudinary.com/dykntmxnh/image/upload/l_text:Sawarabi%20Gothic_100:${this.article.title},co_rgb:000,w_1500,c_fit/v1616594506/blog_ogp.png`,
+        },
+      ],
     }
   },
 
@@ -77,7 +74,7 @@ export default {
     ImageLoader,
     TweetCard,
     YoutubeCard,
-    EmbedLink
+    EmbedLink,
   },
 
   methods: {
@@ -89,13 +86,12 @@ export default {
     shareFaceBook() {
       const url = `https://www.facebook.com/share.php?u=https://blog.takumma.net${this.$route.path}`
       window.open(url, '_blank')
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-
 :root {
   --font-size-title: 1.7rem;
   --font-size-h1: 1.6rem;
@@ -103,21 +99,20 @@ export default {
   --font-size-h3: 1.2rem;
   --font-size-h4: 1.15rem;
   --font-size-h5: 1.05rem;
-  --article-padding: 1.0rem;
+  --article-padding: 1rem;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   :root {
-    --font-size-title: 2.0rem;
+    --font-size-title: 2rem;
     --font-size-h1: 1.8rem;
     --font-size-h2: 1.55rem;
     --font-size-h3: 1.4rem;
     --font-size-h4: 1.25rem;
     --font-size-h5: 1.1rem;
-    --article-padding: 2.0rem;
+    --article-padding: 2rem;
   }
 }
-
 
 .col-center {
   padding: 0px;
@@ -158,14 +153,13 @@ h1 {
 }
 
 .nuxt-content {
-
   font-size: 1.05rem;
 
   h1 {
     font-size: var(--font-size-h1);
     border-bottom: solid 1.5px;
-    border-bottom-color: #C3CEE3;
-    padding-top: 2.0rem;
+    border-bottom-color: #c3cee3;
+    padding-top: 2rem;
     margin-bottom: 1.5rem;
 
     code {
@@ -176,9 +170,9 @@ h1 {
   h2 {
     font-size: var(--font-size-h2);
     border-bottom: solid 1.5px;
-    border-bottom-color: #C3CEE3;
+    border-bottom-color: #c3cee3;
     padding-top: 1.5rem;
-    margin-bottom: 1.0rem;
+    margin-bottom: 1rem;
 
     code {
       font-size: var(--font-size-h2);
@@ -187,7 +181,7 @@ h1 {
 
   h3 {
     font-size: var(--font-size-h3);
-    padding-top: 1.0rem;
+    padding-top: 1rem;
     margin-bottom: 0.5rem;
 
     code {
@@ -214,54 +208,55 @@ h1 {
   }
 
   p {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 
   code {
     font-size: 0.9rem !important;
     font-weight: 500 !important;
-    font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace !important;
+    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+      monospace !important;
     margin-bottom: 0.5rem;
   }
 
   ol {
     counter-reset: counter-name;
+    padding-left: 0;
 
     li {
-      margin: 0; 
       list-style: none;
     }
 
     li:before {
       counter-increment: counter-name;
-      content: counter(counter-name) ".";
-      position: absolute;
+      content: counter(counter-name) '.';
       left: 0;
       font-weight: bold;
+      padding-right: 4px;
     }
   }
 
   hr {
-    border-top: 1.5px solid #C3CEE3;
+    border-top: 1.5px solid #c3cee3;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
 
   img {
-    margin-top: 1.0rem;
+    margin-top: 1rem;
     margin-bottom: 1.5rem;
   }
 
   blockquote {
     color: #777;
     padding-left: 1rem;
-    border-left: solid 5px #C3CEE3;
+    border-left: solid 5px #c3cee3;
   }
 }
 
 .nuxt-content-highlight {
   position: relative;
-  margin-bottom: 1.0rem;
+  margin-bottom: 1rem;
 }
 
 .nuxt-content-highlight .filename {
@@ -272,7 +267,6 @@ h1 {
   z-index: 2;
   margin-right: 0.5rem;
   margin-top: 0.25rem;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
-
 </style>
