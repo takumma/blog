@@ -225,6 +225,7 @@ h1 {
 
     li {
       list-style: none;
+      font-size: 1rem;
     }
 
     li:before {
@@ -233,6 +234,13 @@ h1 {
       left: 0;
       font-weight: bold;
       padding-right: 4px;
+    }
+  }
+
+  ul {
+    li {
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
     }
   }
 
