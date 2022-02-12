@@ -1,12 +1,12 @@
 <template>
   <v-row justify="center" align="center" class="background">
     <v-col
+      v-for="article in articles"
+      :key="article.slug"
       cols="11"
       sm="10"
       md="8"
       lg="7"
-      v-for="article in articles"
-      :key="article.slug"
     >
       <article-card :article="article"></article-card>
     </v-col>

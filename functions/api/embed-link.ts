@@ -24,9 +24,9 @@ exports.handler = async (
       statusCode: 200,
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({
-        url: url,
+        url,
         siteName: siteName[0],
-        title: title,
+        title,
         description: description[0],
         image: image[0],
         twitterCard: twitterCard[0],
