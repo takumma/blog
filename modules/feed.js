@@ -1,3 +1,5 @@
+import '@nuxtjs/feed'
+
 let articles = []
 
 export const create = async (feed, args) => {
@@ -20,8 +22,7 @@ export const create = async (feed, args) => {
       title: article.title,
       id: url,
       link: url,
-      tags: article.tags,
-      createdAt: article.date,
+      date: new Date(article.date),
       description: `This is personal feed of ${article.title}`,
       content: article.text.slice(0, 200) + '...',
     })

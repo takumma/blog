@@ -92,7 +92,7 @@ export default {
 
   feed: [
     {
-      path: '/feed.xml',
+      path: '/feed',
       create,
       cacheTime: 1000 * 60 * 15,
       type: 'rss2',
