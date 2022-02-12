@@ -37,10 +37,17 @@ const YoutubeCard = () => import('~/components/YoutubeCard.vue')
 const EmbedLink = () => import('~/components/EmbedLink.vue')
 
 export default {
+  components: {
+    TagTip,
+    ImageLoader,
+    TweetCard,
+    YoutubeCard,
+    EmbedLink,
+  },
   async asyncData({ $content, params, error }) {
     try {
       const article = await $content('articles', params.slug).fetch()
-      return { article: article }
+      return { article }
     } catch {
       error({
         statusCode: 404,
@@ -67,14 +74,6 @@ export default {
         },
       ],
     }
-  },
-
-  components: {
-    TagTip,
-    ImageLoader,
-    TweetCard,
-    YoutubeCard,
-    EmbedLink,
   },
 
   methods: {

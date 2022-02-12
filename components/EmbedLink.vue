@@ -8,44 +8,44 @@
       </div>
     </div>
     <div v-if="data.image" class="img-wrapper">
-      <img :src="data.image" :alt="data.title" class="ogp-img">
+      <img :src="data.image" :alt="data.title" class="ogp-img" />
     </div>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "nuxt-property-decorator";
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 interface Link {
-  title: string;
-  description: string;
-  url: string;
-  image: string;
-  siteName: string;
-  twitterCard: string;
+  title: string
+  description: string
+  url: string
+  image: string
+  siteName: string
+  twitterCard: string
 }
 
 @Component
 export default class EmbedLink extends Vue {
   @Prop({ type: String, required: true })
-  src!: string;
+  src!: string
 
   data: Link = {
-    title: "",
-    description: "",
-    url: "",
-    image: "",
-    siteName: "",
-    twitterCard: "",
+    title: '',
+    description: '',
+    url: '',
+    image: '',
+    siteName: '',
+    twitterCard: '',
   }
 
   async mounted() {
     try {
-      const resp = await this.$axios.$get(`.netlify/functions/embed-link?url=${this.src}`)
+      const resp = await this.$axios.$get(
+        `.netlify/functions/embed-link?url=${this.src}`
+      )
       this.data = resp
-    } catch (err) {
-      console.error(err)
-    }
+    } catch (err) {}
   }
 
   hostName = (url: string) => url.split('/')[2]

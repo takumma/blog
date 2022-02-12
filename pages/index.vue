@@ -1,7 +1,10 @@
 <template>
   <v-row justify="center" align="center" class="background">
     <v-col
-      cols="11" sm="10" md="8" lg="7"
+      cols="11"
+      sm="10"
+      md="8"
+      lg="7"
       v-for="article in articles"
       :key="article.slug"
     >
@@ -11,23 +14,25 @@
 </template>
 
 <script lang="ts">
-import { Context } from "@nuxt/types"
-import { Vue, Component } from "nuxt-property-decorator";
-const ArticleCard = () => import("@/components/ArticleCard.vue");
-import { IContentDocument } from "@nuxt/content/types/content";
+import { Context } from '@nuxt/types'
+import { Vue, Component } from 'nuxt-property-decorator'
+import { IContentDocument } from '@nuxt/content/types/content'
+const ArticleCard = () => import('@/components/ArticleCard.vue')
 
 @Component({
   components: {
     ArticleCard,
-  }
+  },
 })
 export default class IndexPage extends Vue {
-  async asyncData({ $content }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
+  async asyncData({
+    $content,
+  }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
     const articles = await $content('articles')
       .only(['title', 'slug', 'tags', 'date'])
       .sortBy('date', 'desc')
-      .fetch();
-    return { articles };
+      .fetch()
+    return { articles }
   }
 }
 </script>

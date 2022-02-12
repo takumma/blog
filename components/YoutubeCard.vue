@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "nuxt-property-decorator";
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class TweetCard extends Vue {
   @Prop({ type: String, required: true })
-  id!: string;
+  id!: string
 }
 </script>
 

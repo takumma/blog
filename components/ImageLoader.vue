@@ -1,8 +1,8 @@
 <template>
   <img
-    :src="require(`~/assets/images/${ this.file }`)"
+    :src="require(`~/assets/images/${this.file}`)"
     :alt="this.alt"
-    :style="`width: ${ this.width }%`"
+    :style="`width: ${this.width}%`"
   />
 </template>
 
