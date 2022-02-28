@@ -1,5 +1,5 @@
 ---
-title: 'Reactハンズオンラーニング感想・読書メモ'
+title: 'Reactハンズオンラーニングの感想・読書メモ'
 slug: 'read-learning-react'
 tags: ['book', 'react']
 date: '2022/02/28'
