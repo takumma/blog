@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types'
 import { Vue, Component } from 'nuxt-property-decorator'
-import { IContentDocument } from '@nuxt/content/types/content'
+import { FetchReturn } from '@nuxt/content/types/query-builder'
 const ArticleCard = () => import('@/components/ArticleCard.vue')
 
 @Component({
@@ -27,7 +27,7 @@ const ArticleCard = () => import('@/components/ArticleCard.vue')
 export default class IndexPage extends Vue {
   async asyncData({
     $content,
-  }: Context): Promise<{ articles: IContentDocument | IContentDocument[] }> {
+  }: Context): Promise<{ articles: FetchReturn | FetchReturn[] }> {
     const articles = await $content('articles')
       .only(['title', 'slug', 'tags', 'date'])
       .sortBy('date', 'desc')
