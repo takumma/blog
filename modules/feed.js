@@ -22,7 +22,7 @@ export const create = async (feed, args) => {
       title: article.title,
       id: url,
       link: url,
-      date: new Date(article.date),
+      date: new Date(new Date(article.date).getTime() + 1000 * 60 * 60 * 9),
       description: `This is personal feed of ${article.title}`,
       content: article.text.slice(0, 200) + '...',
     })

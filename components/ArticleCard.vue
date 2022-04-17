@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
+import { FetchReturn } from '@nuxt/content/types/query-builder'
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { IContentDocument } from '@nuxt/content/types/content'
 const TagTip = () => import('@/components/TagTip.vue')
 
 @Component({
@@ -31,7 +31,7 @@ const TagTip = () => import('@/components/TagTip.vue')
 })
 export default class ArticleCard extends Vue {
   @Prop({ required: true })
-  article: IContentDocument | undefined
+  article: FetchReturn | undefined
 }
 </script>
 
