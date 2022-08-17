@@ -259,6 +259,10 @@ h1 {
     padding-left: 1rem;
     border-left: solid 5px #c3cee3;
   }
+  
+  a {
+    overflow-wrap: break-word;
+  }
 }
 
 .nuxt-content-highlight {
