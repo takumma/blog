@@ -10,7 +10,7 @@ export const create = async (feed, args) => {
       : 'http://localhost:3000'
   feed.options = {
     title: "takumma's blog",
-    description: "takumma's blog fee",
+    description: "takumma's blog feed",
     link: `${hostname}/feed.${ext}`,
   }
   const { $content } = require('@nuxt/content')

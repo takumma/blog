@@ -7,7 +7,7 @@
       <v-spacer />
       <v-tooltip bottom color="#263238">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn color="#263238" icon v-bind="attrs" v-on="on" href="/feed">
+          <v-btn color="#263238" icon v-bind="attrs" href="/feed.xml" v-on="on">
             <v-icon>mdi-rss</v-icon>
           </v-btn>
         </template>
